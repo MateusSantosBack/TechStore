@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>TechStore Dashboard</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+/* HEADER */
+header {
+    background: #1e272e;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.header-buttons a {
+    text-decoration: none;
+    margin-left: 10px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-produto {
+    background: #27ae60;
+}
+
+.btn-cliente {
+    background: #2980b9;
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+/* ITEM */
+.item {
+    background: #f1f2f6;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+/* BOTÃO DELETE */
+.delete {
+    margin-top: 8px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete:hover {
+    background: #c0392b;
+}
+
+/* LINKS */
+a.edit {
+    margin-right: 10px;
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1> TechStore Dashboard</h1>
+
+    <div class="header-buttons">
+        <a class="btn-produto" href="/cadastro_produto">+ Produto</a>
+        <a class="btn-cliente" href="/cadastro_cliente">+ Cliente</a>
+    </div>
+</header>
+
+<div class="container">
+
+<!-- PRODUTOS -->
+<div class="card">
+    <h2> Produtos</h2>
+
+    <% produtos.forEach(p => { %>
+        <div class="item">
+            <b><%= p.nome %></b><br>
+            R$ <%= p.preco %> | <%= p.categoria %>
+
+            <div style="margin-top:10px;">
+                <a class="edit" href="/produtos/editar/<%= p.id %>"> Editar</a>
+
+                <form action="/produtos/deletar" method="POST" style="display:inline;">
+                    <input type="hidden" name="id" value="<%= p.id %>">
+                    <button class="delete">Excluir</button>
+                </form>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+<!-- CLIENTES -->
+<div class="card">
+    <h2> Clientes</h2>
+
+    <% clientes.forEach(c => { %>
+        <div class="item">
+            <b><%= c.nome %></b><br>
+            <%= c.email %> | <%= c.telefone %>
+
+            <div style="margin-top:10px;">
+                <a class="edit" href="/clientes/editar/<%= c.id %>"> Editar</a>
+
+                <form action="/clientes/deletar" method="POST" style="display:inline;">
+                    <input type="hidden" name="id" value="<%= c.id %>">
+                    <button class="delete">Excluir</button>
+                </form>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+</div>
+
+</body>
+</html>

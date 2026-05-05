@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Editar Cliente</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2> Editar Cliente</h2>
+
+<form action="/clientes/atualizar" method="POST">
+    <input type="hidden" name="id" value="<%= cliente.id %>">
+
+    <input type="text" name="nome" value="<%= cliente.nome %>">
+    <input type="email" name="email" value="<%= cliente.email %>">
+    <input type="text" name="telefone" value="<%= cliente.telefone %>">
+
+    <button type="submit">Atualizar</button>
+</form>
+
+</div>
+
+</body>
+</html>
